@@ -1,0 +1,135 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularTodoApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <!--<div class="container">-->
+      <!--<div class="header">-->
+        <!--<ul class="nav nav-pills pull-right">-->
+          <!--<li class="active"><a ng-href="#">Home</a></li>-->
+          <!--<li><a ng-href="#/about">About</a></li>-->
+          <!--<li><a ng-href="#">Contact</a></li>-->
+        <!--</ul>-->
+        <!--<h3 class="text-muted">angularTodo</h3>-->
+      <!--</div>-->
+
+      <!--<div ng-view=""></div>-->
+
+      <!--<div class="footer">-->
+        <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="container" data-ng-controller="TodoController">-->
+      <!--<header class="app-header">-->
+        <!--<h1 class="app-title">{{ appTitle }}</h1>-->
+        <!--<h1 class="app-headline">{{ appHeadline }}</h1>-->
+      <!--</header>-->
+
+      <!--<section class="app-body">-->
+        <!--<section class="archive-control">-->
+          <!--<span>{{ remaining() }} of {{ todos.length }} remaining</span>-->
+          <!--<p>[ <a href="" data-ng-click="archive()">Remove Completed Items</a> ]</p>-->
+        <!--</section>-->
+
+        <!--<ul class="unstyled">-->
+          <!--<li data-ng-repeat="todo in todos track by $index">-->
+            <!--<input type="checkbox" data-ng-model="todo.done">-->
+            <!--<span class="done-{{ todo.done }}">{{ todo.text }}</span>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+        <!--<form data-ng-submit="addTodo()" class="todo-form">-->
+          <!--<input type="text" data-ng-model="todoText" placeholder="Enter new ToDo item" />-->
+          <!--<br />-->
+          <!--<input type="submit" value="Add Task" />-->
+        <!--</form>-->
+      <!--</section>-->
+    <!--</div>-->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">AngularTodo</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <!--ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul-->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/login">Login</a></li>
+            <li><a href="#/signup">Signup</a></li> <!-- class="active" -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div ng-view></div>
+
+    <div class="container">
+    </div><!-- /.container -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/parse/parse.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/signupctrl.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
