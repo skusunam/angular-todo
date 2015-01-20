@@ -65,7 +65,7 @@
       <!--</section>-->
     <!--</div>-->
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -82,14 +82,18 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul-->
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" ng-hide="loggedIn">
             <li><a href="#/login">Login</a></li>
             <li><a href="#/signup">Signup</a></li> <!-- class="active" -->
           </ul>
+          <ul class="nav navbar-nav navbar-right" ng-show="loggedIn">
+            <li><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div ng-view></div>
+    <div ng-view class="view-animate"></div>
 
     <div class="container">
     </div><!-- /.container -->
@@ -123,13 +127,19 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/parse/parse.js"></script>
+    <script src="bower_components/parse/parse.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/signupctrl.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/services/parseservice.js"></script>
+    <script src="scripts/services/userservice.js"></script>
+    <script src="scripts/services/userserviceconst.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/todos.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
