@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularTodoApp')
-  .controller('NavCtrl', function ($scope, $location, UserService) {
+  .controller('NavCtrl', function ($scope,$rootScope, $location, UserService) {
 
     //TODO: Find a better way to know the loggedIn status
     // 1) Will this $watch get executed in every digest cycle?

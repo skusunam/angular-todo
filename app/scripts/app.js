@@ -6,6 +6,15 @@ angular
     'ngAnimate'
   ])
 
+  .run(function($rootScope, $location){
+    $rootScope.$on('$routeChangeError', function(event, current, previous) {
+      console.log('$routeChangeError');
+      if(!event.authenticated){
+        $location.path('/login');
+      }
+    });
+  })
+
   .config(function ($routeProvider) {
     Parse.initialize("quEQw1Yal6U7nYh9JUZ3eefGky4zF1kPpJOMzhwU", "2Cvg0ii5WHeVxU5ypCKeEwW1uAuB0y76u2ycYIlm");
 
@@ -23,7 +32,21 @@ angular
       })
       .when('/todos', {
         templateUrl: 'views/todos.html',
-        controller: 'TodosCtrl'
+        controller: 'TodosCtrl',
+        resolve: {
+          data: function($q, UserService){
+            // var defer = $q.defer();
+            if(UserService.isUserLoggedIn()){
+              //defer.resolve();
+              return $q.when(true);
+            } else {
+              //defer.reject({ authenticated: false });
+              return $q.reject({ authenticated: false });
+            }
+            //return defer.promise;
+          }
+        }
+
       })
       .otherwise({
         redirectTo: '/'

@@ -14,7 +14,7 @@ Build Angular + Parse app
 3) Start using Angular styleguide for this project   - MVP
 
 4) We should never use $apply in our code unless there is some changes happening outside Angular. Research more on why we have
-   $apply in this code?  -  SRINI
+   $apply in this code?  -  SRINI (DONE)
 
 5) Difference between $apply and $digest? - MVP (DONE)
 

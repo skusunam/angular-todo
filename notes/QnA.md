@@ -1,5 +1,5 @@
 
-1. What does 'ngView' directive does?
+## 1. What does 'ngView' directive does?
 A: It does following things:
     - Anytime $routeChangeSuccess event is fired, the view will update
     - If there is a template associated with current route
@@ -10,7 +10,13 @@ A: It does following things:
         - Emits the '$viewContentLoaded' event
         - Run the `onLoad` attribute function, if provided
 
-2. We should never use $apply in our code unless there is some changes happening outside Angular. Research more on why we have
+## 2. We should never use $apply in our code unless there is some changes happening outside Angular. Research more on why we have
    $apply when we use Parse service?
 A: Parse services return a promise which is not an Angular promise. So the data is getting outside Angular and one otpion is we call
    $apply manually (or) we can retur promise from Angular service api and resolve based on success or failure. Please look at `parseservice.js`.
+
+## 3. How do we refresh a page in Angular?
+A: Use $window.location object
+
+## 4. What is the easist way to return a promise to the caller where there is no Async involved?
+A: $q.when(true)
