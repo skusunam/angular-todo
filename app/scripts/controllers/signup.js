@@ -9,15 +9,10 @@ angular.module('angularTodoApp')
       console.log($scope.registeredUser);
       ParseService.signUp($scope.registeredUser)
         .then(function(){
-          $scope.status = 'User Saved Succesfully. Please login with your credentials.';
-
-          UserService.setUser($scope.registeredUser);
-          UserService.setMessage($scope.status);
+          UserService.setMessage('User Saved Succesfully. Please login with your credentials.');
 
           console.log($scope.status);
           $location.path('/login');
-          $scope.$apply();
-          console.log($location.path());
         });
     }
   });

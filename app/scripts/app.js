@@ -7,7 +7,6 @@ angular
   ])
 
   .config(function ($routeProvider) {
-
     Parse.initialize("quEQw1Yal6U7nYh9JUZ3eefGky4zF1kPpJOMzhwU", "2Cvg0ii5WHeVxU5ypCKeEwW1uAuB0y76u2ycYIlm");
 
     $routeProvider

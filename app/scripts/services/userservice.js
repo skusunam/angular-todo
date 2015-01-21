@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('angularTodoApp')
+
   .service('UserService', function () {
     var user = {};
     var message;
