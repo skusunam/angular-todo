@@ -2,6 +2,7 @@
 
 angular.module('angularTodoApp')
   .controller('LoginCtrl', function ($scope, $location, UserService, ParseService) {
+
     $scope.message = UserService.getMessage();
 
     $scope.login = function() {
