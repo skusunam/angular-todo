@@ -18,4 +18,6 @@ Build Angular + Parse app
 
 5) Difference between $apply and $digest? - MVP (DONE)
 
-6) Read more about 'git flow" and try to follow it.'
+6) Read more about 'git flow" and try to follow it.
+
+7) Show all the hooks to implement Animations using Angular?
