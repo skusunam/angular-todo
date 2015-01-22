@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('angularTodoApp')
-  .controller('TodosCtrl', function ($scope) {
-    console.log('TodosCtrl called');
-  });
+(function() {
+    angular.module('angularTodoApp')
+        .controller('TodosCtrl', function($scope) {
+            console.log('TodosCtrl called');
+        });
+})();
