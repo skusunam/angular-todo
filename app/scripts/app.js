@@ -36,25 +36,28 @@
                 templateUrl: 'views/todos.html',
                 controller: 'TodosCtrl',
                 resolve: {
-                    data: function($q, UserService) {
-                        // var defer = $q.defer();
-                        if (UserService.isUserLoggedIn()) {
-                            //defer.resolve();
-                            return $q.when(true);
-                        } else {
-                            //defer.reject({ authenticated: false });
-                            return $q.reject({
-                                authenticated: false
-                            });
-                        }
-                        //return defer.promise;
-                    }
+                    isAuthenticated: verifyIfAuthenticated
                 }
-
             })
             .otherwise({
                 redirectTo: '/'
             });
+
+        verifyIfAuthenticated.$inject = ['$q', 'UserService'];
+
+        function verifyIfAuthenticated($q, UserService) {
+            // var defer = $q.defer();
+            if (UserService.isUserLoggedIn()) {
+                //defer.resolve();
+                return $q.when(true);
+            } else {
+                //defer.reject({ authenticated: false });
+                return $q.reject({
+                    authenticated: false
+                });
+            }
+            //return defer.promise;
+        };
     };
 
 })();
