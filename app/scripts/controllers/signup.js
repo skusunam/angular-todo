@@ -4,16 +4,29 @@
     angular.module('angularTodoApp')
         .controller('SignupCtrl', SignupCtrl);
 
-    function SignupCtrl($scope, $location, ParseService, UserService) {
+
+    SignupCtrl.$inject = ['$location', 'ParseService', 'UserService'];
+
+    function SignupCtrl($location, ParseService, UserService) {
         console.log('SignupController called');
 
-        $scope.save = function() {
-            console.log($scope.registeredUser);
-            ParseService.signUp($scope.registeredUser)
+        var vm = this;
+
+        vm.save = save;
+        vm.registeredUser = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        };
+
+        function save() {
+            console.log(vm.registeredUser);
+            ParseService.signUp(vm.registeredUser)
                 .then(function() {
                     UserService.setMessage('User Saved Succesfully. Please login with your credentials.');
 
-                    console.log($scope.status);
+                    console.log(vm.status);
                     $location.path('/login');
                 });
         }

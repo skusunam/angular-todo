@@ -4,21 +4,34 @@
     angular.module('angularTodoApp')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($scope, $location, UserService, ParseService) {
-        $scope.message = UserService.getMessage();
+    LoginCtrl.$inject = ['$location', 'UserService', 'ParseService'];
 
-        $scope.login = function() {
-            console.log($scope.username, $scope.password);
-            ParseService.login($scope.username, $scope.password)
+    function LoginCtrl($location, UserService, ParseService) {
+        var vm = this;
+
+        vm.message = UserService.getMessage();
+        vm.login = login;
+        vm.user = {
+            username: '',
+            password: ''
+        };
+
+        function login(){
+            console.log(vm.user.username, vm.user.password);
+            ParseService.login(vm.user.username, vm.user.password)
                 .then(function(count) {
                     console.log('user count = ' + count);
                     if (count === 0) {
-                        $scope.message = 'Invalid credentials. Please re-enter email \ password';
+                        vm.message = 'Invalid credentials. Please verify email/password';
                     } else {
+                        //When new user is created, userService message is set. but we are not clearing that up.
+                        //this line clears the message set elsewhere. Does this have any other impact ?
+                        //what is the correct use of message in UserService ?
+                        UserService.setMessage('');
                         UserService.setUserLoggedIn(true);
                         $location.path('/todos');
                     }
                 });
-        }
+        };
     };
 })();

@@ -5,10 +5,10 @@
             'ngRoute',
             'ngAnimate'
         ])
-        .run(Run)
-        .config(Config);
+        .run(run)
+        .config(config);
 
-    function Run($rootScope, $location) {
+    function run($rootScope, $location) {
         $rootScope.$on('$routeChangeError', function(event, current, previous) {
             console.log('$routeChangeError');
             if (!event.authenticated) {
@@ -17,7 +17,7 @@
         });
     };
 
-    function Config($routeProvider) {
+    function config($routeProvider) {
         Parse.initialize("quEQw1Yal6U7nYh9JUZ3eefGky4zF1kPpJOMzhwU", "2Cvg0ii5WHeVxU5ypCKeEwW1uAuB0y76u2ycYIlm");
 
         $routeProvider

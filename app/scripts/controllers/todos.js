@@ -4,7 +4,10 @@
     angular.module('angularTodoApp')
         .controller('TodosCtrl', TodosCtrl);
 
-    function TodosCtrl($scope) {
+    TodosCtrl.$inject = [];
+    function TodosCtrl() {
         console.log('TodosCtrl called');
+
+        var vm = this;
     };
 })();
