@@ -2,7 +2,9 @@
 
 (function() {
     angular.module('angularTodoApp')
-    .service('UserService', function() {
+        .service('UserService', UserService);
+
+    function UserService() {
         var user = {};
         var message;
         var loggedIn = false;
@@ -30,5 +32,5 @@
         this.isUserLoggedIn = function() {
             return loggedIn;
         };
-    });
+    };
 })();

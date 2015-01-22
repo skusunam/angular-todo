@@ -2,7 +2,9 @@
 
 (function() {
     angular.module('angularTodoApp')
-    .service('ParseService', function($q) {
+        .service('ParseService', ParseService);
+
+    function ParseService($q) {
         this.signUp = function(registeredUser) {
             var TodoUser = Parse.Object.extend('TodoUser');
             var todoUser = new TodoUser();
@@ -44,5 +46,5 @@
             });
             return defer.promise;
         };
-    });
+    };
 })();

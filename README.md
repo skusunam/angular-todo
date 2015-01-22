@@ -8,7 +8,7 @@ Build Angular + Parse app
 # TODO:
 
 
-1) Start using Angular styleguide for this project   - MVP
+1) Start using Angular styleguide for this project   - MVP(IN PROGRESS)
 
 ##2) We should never use $apply in our code unless there is some changes happening outside Angular. Research more on why we have
      $apply in this code?  -  SRINI (DONE)

@@ -2,18 +2,20 @@
 
 (function() {
     angular.module('angularTodoApp')
-        .controller('SignupCtrl', function($scope, $location, ParseService, UserService) {
-            console.log('SignupController called');
+        .controller('SignupCtrl', SignupCtrl);
 
-            $scope.save = function() {
-                console.log($scope.registeredUser);
-                ParseService.signUp($scope.registeredUser)
-                    .then(function() {
-                        UserService.setMessage('User Saved Succesfully. Please login with your credentials.');
+    function SignupCtrl($scope, $location, ParseService, UserService) {
+        console.log('SignupController called');
 
-                        console.log($scope.status);
-                        $location.path('/login');
-                    });
-            }
-        });
+        $scope.save = function() {
+            console.log($scope.registeredUser);
+            ParseService.signUp($scope.registeredUser)
+                .then(function() {
+                    UserService.setMessage('User Saved Succesfully. Please login with your credentials.');
+
+                    console.log($scope.status);
+                    $location.path('/login');
+                });
+        }
+    }
 })();
