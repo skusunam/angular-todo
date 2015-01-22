@@ -20,3 +20,9 @@ A: Use $window.location object
 
 ## 4. What is the easist way to return a promise to the caller where there is no Async involved?
 A: $q.when(true)
+
+##5. What is 'git flow" and how it is beneficial to teams \ developers?
+A:
+
+##6. What is the difference between $compile and $link in Directives?
+A:
