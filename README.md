@@ -29,4 +29,4 @@ Build Angular + Parse app
 
 9. Implement Signup & Login with Facebook feature.
 
-10. Start implementing TODO functionality.
+10. Start implementing TODO functionality. - SRINI (IN PROGRESS)
