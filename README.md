@@ -4,7 +4,7 @@ Build Angular + Parse app
 
 1. Run `npm install`
 2. Run `bower install`
-3. Run `grunt server`
+3. Run `grunt serve`
 
 
 # TODO:
@@ -28,3 +28,5 @@ Build Angular + Parse app
 8. Implement global exception handler by decorating '$exceptionHandler'.
 
 9. Implement Signup & Login with Facebook feature.
+
+10. Start implementing TODO functionality.

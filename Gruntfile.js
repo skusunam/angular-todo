@@ -411,4 +411,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.grunt.registerTask('gh-pages', ['gh-pages']);
 };
