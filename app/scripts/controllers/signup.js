@@ -22,8 +22,11 @@
 
         function save() {
             console.log(vm.registeredUser);
-            ParseService.signUp(vm.registeredUser)
-                .then(function() {
+
+            var promise = ParseService.signUp(vm.registeredUser);
+            vm.busyPromise = promise;
+
+            promise.then(function() {
                     UserService.setMessage('User Saved Succesfully. Please login with your credentials.');
 
                     console.log(vm.status);

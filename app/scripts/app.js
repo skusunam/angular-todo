@@ -3,7 +3,8 @@
 (function() {
     angular.module('angularTodoApp', [
             'ngRoute',
-            'ngAnimate'
+            'ngAnimate',
+            'cgBusy'
         ])
         .run(run)
         .config(config);

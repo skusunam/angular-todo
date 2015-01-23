@@ -18,8 +18,11 @@
 
         function login(){
             console.log(vm.user.username, vm.user.password);
-            ParseService.login(vm.user.username, vm.user.password)
-                .then(function(count) {
+            var promise = ParseService.login(vm.user.username, vm.user.password);
+
+            vm.busyPromise = promise;
+
+            promise.then(function(count) {
                     console.log('user count = ' + count);
                     if (count === 0) {
                         vm.message = 'Invalid credentials. Please verify email/password';
