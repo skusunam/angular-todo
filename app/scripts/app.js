@@ -26,15 +26,18 @@
             })
             .when('/signup', {
                 templateUrl: 'views/signup.html',
-                controller: 'SignupCtrl'
+                controller: 'SignupCtrl',
+                controllerAs: 'signup'
             })
             .when('/login', {
                 templateUrl: 'views/login.html',
-                controller: 'LoginCtrl'
+                controller: 'LoginCtrl',
+                controllerAs: 'login'
             })
             .when('/todos', {
                 templateUrl: 'views/todos.html',
                 controller: 'TodosCtrl',
+                controllerAs: 'todos',
                 resolve: {
                     isAuthenticated: verifyIfAuthenticated
                 }
