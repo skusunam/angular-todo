@@ -30,3 +30,9 @@ Build Angular + Parse app
 9. Implement Signup & Login with Facebook feature.
 
 10. Start implementing TODO functionality. - SRINI (IN PROGRESS)
+
+11. Sublime Text 3
+  1. Find Sublime 3 plugin which can auto complete ES5 code (functions, objects etc)
+  2. Get to know most of Sublime short cuts
+
+

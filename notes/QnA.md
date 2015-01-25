@@ -26,3 +26,6 @@ A:
 
 ##6. What is the difference between $compile and $link in Directives?
 A:
+
+##7. What is the use of 'track by' in ngRepeat? (Duplicates in a repeater are not allowed. Use 'track by' expression to specify unique keys. Repeater: {0}, Duplicate key: {1}, Duplicate value: {2})
+A:

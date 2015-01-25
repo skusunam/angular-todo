@@ -8,8 +8,11 @@
         var parseService = {
             signup: signUp,
             login: login,
+            getTodos: getTodos,
             addTodo: addTodo,
-            getTodos: getTodos
+            removeTodo: removeTodo,
+            todoCompleted: todoCompleted,
+            markAllComplete: markAllComplete
         }
         return parseService;
 
@@ -24,7 +27,6 @@
             var defer = $q.defer();
             todoUser.save({
                 success: function(data) {
-                    console.log("signup: success  " + data);
                     defer.resolve(data);
                 },
                 error: function(error) {
@@ -44,7 +46,6 @@
             var defer = $q.defer();
             query.count({
                 success: function(count) {
-                    console.log("login: count = " + count);
                     defer.resolve(count)
                 },
                 error: function(error) {
@@ -52,26 +53,6 @@
                     defer.reject(error);
                 }
             });
-            return defer.promise;
-        };
-
-        function addTodo(todo){
-            var Todos = Parse.Object.extend("Todos");
-            var todos = new Todos();
-            todos.set('name', todo);
-            todos.set('isComplete', false);
-
-            var defer = $q.defer();
-            todos.save({
-                success: function(data){
-                    console.log(todo + " added succesfully !!!", data);
-                    defer.resolve(data)
-                },
-                error: function(error){
-                    console.log("Error happened while saving '"+todo+"' to Parse.", error);
-                    defer.reject(error);
-                }
-            })
             return defer.promise;
         };
 
@@ -84,18 +65,92 @@
             var defer = $q.defer();
             todos.fetch({
                 success: function(collection) {
-                    console.log("collection", collection);
-                    collection.each(function(object) {
-                      console.warn(object.attributes);
-                    });
+                    console.log("collection ", collection);
                     defer.resolve(collection);
                   },
                   error: function(collection, error) {
-                    // The collection could not be retrieved.
                     defer.reject(error);
                   }
             });
             return defer.promise;
         };
+
+        function addTodo(todo){
+            var Todos = Parse.Object.extend("Todos");
+            var todos = new Todos();
+            todos.set('title', todo);
+            todos.set('isComplete', false);
+
+            var defer = $q.defer();
+            todos.save({
+                success: function(data){
+                    defer.resolve(data)
+                },
+                error: function(error){
+                    console.log("Error happened while saving '"+todo+"' to Parse.", error);
+                    defer.reject(error);
+                }
+            })
+            return defer.promise;
+        };
+
+        function removeTodo(todo){
+            var Todos = Parse.Object.extend("Todos");
+            var query = new Parse.Query(Todos);
+
+            var defer = $q.defer();
+            query.get(todo.id, {
+                success: function(todo){
+                    todo.destroy({
+                        success: function(status){
+                            defer.resolve(status);
+                        },
+                        error: function(error){
+                            defer.reject(error);
+                        }
+                    });
+                },
+                error: function(error){
+                    defer.reject(error);
+                }
+            })
+            return defer.promise;
+        };
+
+         function todoCompleted(todo){
+            var Todos = Parse.Object.extend("Todos");
+            var query = new Parse.Query(Todos);
+
+            var defer = $q.defer();
+            query.get(todo.id, {
+                success: function(updatedTodo){
+                    updatedTodo.set('isComplete', todo.isComplete);
+                    updatedTodo.save({
+                        success: function(){
+                            console.log("todo's icCompleted updated succesfully", updatedTodo.get('isComplete'));
+                            defer.resolve();
+                        },
+                        error: function(){
+                            defer.reject(error);
+                        }
+                    });
+                },
+                error: function(error){
+                    defer.reject(error);
+                }
+            })
+            return defer.promise;
+         };
+
+         function markAllComplete(todos){
+            var promises = [];
+            todos.forEach(function(todo){
+                //todo.isComplete = isComplete;
+                promises.push(todoCompleted(todo));
+            });
+            console.log('promises = ', promises);
+            return $q.all();
+         }
+
     };
 })();

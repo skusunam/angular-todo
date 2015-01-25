@@ -1,5 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Quattrocento:700);
+
 body {
   padding-top: 50px;
+  background-color:#f8f8f8;
+  font-family: 'Quattrocento', serif;
 }
 .starter-template {
   padding: 40px 15px;
@@ -45,4 +49,9 @@ body {
 }
 .view-animate.ng-leave.ng-leave-active {
   left:-100%;
+}
+
+/* todos */
+.selected {
+  border:1px solid #ddd;
 }

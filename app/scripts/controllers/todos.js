@@ -4,42 +4,75 @@
     angular.module('angularTodoApp')
         .controller('TodosCtrl', TodosCtrl);
 
-    TodosCtrl.$inject = ['ParseService'];
+    TodosCtrl.$inject = ['ParseService', 'UserService'];
 
-    function TodosCtrl(ParseService) {
-        console.log('TodosCtrl called');
+    function TodosCtrl(ParseService, UserService) {
         var vm = this;
-        vm.todos = [];
-        vm.addTodo = addTodo;
+        vm.newTodo = '';
+        vm.allChecked = false;
+        vm.addTodo          =   addTodo;
+        vm.removeTodo       =   removeTodo;
+        vm.todoCompleted    =   todoCompleted;
+        vm.markAll          =   markAll;
 
         getTodos();
 
+        /*
+            1. Trim new todo so that if length is zero we should not attempt to save
+        */
         function addTodo(){
-            console.log(vm.newTodo);
-
+            var newTodo = vm.newTodo.trim();
+            if(newTodo.length === 0){
+                //UserService.setMessage('Please Enter valid todo');
+                return
+            }
             var promise = ParseService.addTodo(vm.newTodo);
+            vm.busyPromise = promise;
             promise.then(function(data){
-                console.log("Go and update Todo's from Parse", data);
-                vm.newTodo = null;
-                // TODO: Instead of reloading an array can we just add this todo to existing array?
-                //vm.todos.push(data);
-                getTodos();
+                vm.newTodo = '';
+                vm.todos.push(_.extend(data.attributes, {id: data.id}));
             })
-        }
+        };
+
+        function removeTodo(todo){
+            console.log('removeTodo', vm.todos, todo);
+            var promise = ParseService.removeTodo(todo);
+            vm.busyPromise = promise;
+            promise.then(function(data){
+                vm.todos.splice(vm.todos.indexOf(todo), 1);
+            })
+        };
+
+        function todoCompleted(todo){
+            console.log('todoCompleted ', todo);
+            vm.busyPromise = ParseService.todoCompleted(todo);;
+        };
+
+        function markAll(allChecked){
+            vm.allChecked = !allChecked;
+            console.log("markAll : isComplete " + vm.allChecked);
+            vm.todos.forEach(function(todo){
+                if(vm.allChecked){
+                    todo.isComplete = true;
+                } else {
+                    todo.isComplete = false;
+                }
+            });
+            //TODO: spinner not showing investigate
+            var promises = ParseService.markAllComplete(vm.todos);
+            vm.busyPromise = promises;
+        };
 
         function getTodos(){
-            console.log("TodosCtrl : getTodos");
-
             var promise = ParseService.getTodos();
+            vm.busyPromise = promise;
             promise.then(function(collection){
                 vm.newTodo = null;
                 vm.todos = [];
                 collection.each(function(object) {
-                    //console.warn(object.attributes);
-                    vm.todos.push(object.attributes);
+                    vm.todos.push(_.extend(object.attributes, {id: object.id}));
                 });
-                console.log(" Todos.lenght = ", vm.todos);
             })
-        }
+        };
     };
 })();
